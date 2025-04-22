@@ -1,0 +1,15 @@
+comments:
+  allowedFields: ["name", "email", "message"]
+  requiredFields: ["name", "message"]
+  branch: "main"
+  path: "_data/posts"
+  filename: "comment-:date"
+  format: "yaml"
+  moderation: true
+  name: "Comentário de Fórum"
+  commitMessage: "Novo comentário enviado por Staticman"
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "iso8601"
