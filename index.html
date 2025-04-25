@@ -1,83 +1,51 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>bl chan - Fórum Yaoi & BL</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BL Chan</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #fafafa;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #282c34;
-      color: white;
-      padding: 1rem;
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: #f0f0f0;
       text-align: center;
+      padding: 50px;
     }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
+
     h1 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 40px;
     }
-    .topico {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 300px;
+      margin: 0 auto;
     }
-    .topico a {
+
+    a {
+      background-color: #ff69b4;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
       text-decoration: none;
-      color: #0077cc;
-      font-weight: bold;
+      transition: background-color 0.3s;
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      color: #888;
+
+    a:hover {
+      background-color: #ff85c1;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>bl chan</h1>
-    <p>Fórum de discussão para fãs de Yaoi e BL</p>
-  </header>
-
-  <main>
-    <section class="topico">
-      <a href="topicos/apresentacoes.html">📌 Apresentações</a>
-      <p>Se apresente para a comunidade!</p>
-    </section>
-
-    <section class="topico">
-      <a href="topicos/recomendacoes.html">📚 Recomendações de BL</a>
-      <p>Compartilhe obras que você ama!</p>
-    </section>
-
-    <section class="topico">
-      <a href="1.html">✍️ Fanfics</a>
-      <p>Poste suas histórias originais ou fanfics yaoi!</p>
-    </section>
-    
-    <section class="topico">
-  <a href="topicos/mais18.html">🔞 +18</a>
-  <p>Conteúdo explícito. Acesse apenas se for maior de 18 anos.</p>
-</section>
-
-
-    <!-- Adicione mais tópicos como quiser -->
-  </main>
-
-  <footer>
-    <p>bl chan © 2025 - feito com 💖 no GitHub Pages</p>
-  </footer>
+  <h1>Bem-vindo ao BL Chan</h1>
+  <div class="menu">
+    <a href="yaoi.html">Yaoi</a>
+    <a href="topicos/bl.html">BL</a>
+    <a href="topicos/doramas.html">Doramas BL</a>
+    <a href="topicos/1.html">Fanfics</a>
+  </div>
 </body>
 </html>
