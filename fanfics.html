@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>bl chan — Fanfics</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fafafa;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    header, footer {
+      background: #ffe6f0;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    form {
+      background: #fff0f5;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    form input, form textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ffcce0;
+      border-radius: 5px;
+    }
+    button {
+      background: #ff3399;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .fanfic {
+      background: #ffffff;
+      padding: 15px;
+      border-left: 4px solid #ff3399;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Fanfics — bl chan</h1>
+  </header>
+
+  <form id="fanficForm">
+    <input type="text" id="titulo" placeholder="Título da fanfic" required />
+    <input type="text" id="autor" placeholder="Autor (opcional)" />
+    <textarea id="texto" rows="8" placeholder="Escreva sua fanfic aqui..." required></textarea>
+    <button type="submit">Publicar</button>
+  </form>
+
+  <div id="fanfics"></div>
+
+  <footer>
+    <p>&copy; 2025 bl chan. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Firebase App + Firestore -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCJAGPR7X0Ti_io2aJ1DuHKJxe2ktdStGQ",
+      authDomain: "blchanweb.firebaseapp.com",
+      projectId: "blchanweb",
+      storageBucket: "blchanweb.firebasestorage.app",
+      messagingSenderId: "37801416847",
+      appId: "1:37801416847:web:29c883a1d5e400221478fa"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('fanficForm');
+    const fanficsDiv = document.getElementById('fanfics');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('titulo').value;
+      const autor = document.getElementById('autor').value || 'Anônimo';
+      const texto = document.getElementById('texto').value;
+
+      await addDoc(collection(db, 'fanfics'), {
+        titulo,
+        autor,
+        texto,
+        data: new Date()
+      });
+
+      form.reset();
+      alert('Fanfic publicada com sucesso!');
+      carregarFanfics();
+    });
+
+    async function carregarFanfics() {
+      fanficsDiv.innerHTML = '';
+      const q = query(collection(db, "fanfics"), orderBy("data", "desc"));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach(doc => {
+        const fanfic = doc.data();
+        const div = document.createElement('div');
+        div.className = 'fanfic';
+        div.innerHTML = `
+          <h3>${fanfic.titulo}</h3>
+          <p><strong>Autor:</strong> ${fanfic.autor}</p>
+          <p>${fanfic.texto}</p>
+        `;
+        fanficsDiv.appendChild(div);
+      });
+    }
+
+    carregarFanfics();
+  </script>
+</body>
+</html>
